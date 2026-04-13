@@ -202,3 +202,9 @@
 
 
 // delete document
+import mongoose from "mongoose";
+
+mongoose.connect("mongodb+srv://Jane_Doe:%40JaneJane@cluster0.baqpcjv.mongodb.net/TestDB")
+.then(() => console.log("✅ Connected to MongoDB"))
+.catch(err => console.log(err));
+
