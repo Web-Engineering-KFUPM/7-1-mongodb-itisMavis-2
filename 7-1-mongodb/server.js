@@ -208,3 +208,41 @@ mongoose.connect("mongodb+srv://Jane_Doe:%40JaneJane@cluster0.baqpcjv.mongodb.ne
 .then(() => console.log("✅ Connected to MongoDB"))
 .catch(err => console.log(err));
 
+const studentSchema = new mongoose.Schema({
+  name: String,
+  age: Number,
+  major: String
+});
+
+const Student = mongoose.model("Student", studentSchema);
+
+async function createStudents() {
+  await Student.insertMany([
+    { name: "Ali", age: 21, major: "CS" },
+    { name: "Sara", age: 23, major: "SE" }
+  ]);
+  console.log("✅ Inserted");
+}
+
+//createStudents();
+
+async function readStudents() {
+  const all = await Student.find();
+  console.log(all);
+}
+
+//readStudents();
+
+async function updateStudent() {
+  await Student.updateOne({ name: "Ali" }, { age: 22 });
+  console.log("✅ Updated Ali");
+}
+
+//updateStudent();
+
+async function deleteStudent() {
+  await Student.deleteOne({ name: "Sara" });
+  console.log("✅ Deleted Sara");
+}
+
+//deleteStudent();
